@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Calculator{% endblock %}
+
+{% block body %}
+    <div class="container mx-auto p-4">
+        <h1 class="text-2xl font-bold mb-4">Calculator</h1>
+
+        {{ form_start(form, {'attr': {'id': 'calculator-form', 'class': 'space-y-4'}}) }}
+        <div class="flex space-x-4">
+            <div class="form-group">
+                {{ form_widget(form.a, {'attr': {'class': 'form-control border rounded p-2'}}) }}
+            </div>
+            <div class="form-group">
+                {{ form_widget(form.operation, {'attr': {'class': 'form-control border rounded p-2'}}) }}
+            </div>
+            <div class="form-group">
+                {{ form_widget(form.b, {'attr': {'class': 'form-control border rounded p-2'}}) }}
+            </div>
+            <div class="form-group">
+                {{ form_widget(form.calculate, {'attr': {'class': 'btn btn-primary bg-blue-500 text-white rounded p-2'}}) }}
+            </div>
+        </div>
+        {{ form_end(form) }}
+
+        <div id="result" class="mt-4 bg-green-500 text-white rounded p-4 w-full hidden text-2xl"></div>
+    </div>
+
+    <script>
+        document.getElementById('calculator-form').addEventListener('submit', async function(event) {
+            event.preventDefault();
+
+            const form = event.target;
+            const formData = new FormData(form);
+            const data = {
+                a: parseFloat(formData.get('calculate[a]')),
+                b: parseFloat(formData.get('calculate[b]')),
+                operation: formData.get('calculate[operation]')
+            };
+
+            try {
+                const response = await fetch('/api/calculate', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                });
+
+                const result = await response.json();
+                const resultDiv = document.getElementById('result');
+                resultDiv.classList.remove('hidden');
+                resultDiv.innerHTML = response.ok ? `<h2 class="text-white">Result: ${result.result}</h2>` : `<h2 class="text-red-500">Error: ${result.error}</h2>`;
+            } catch (error) {
+                const resultDiv = document.getElementById('result');
+                resultDiv.classList.remove('hidden');
+                resultDiv.innerHTML = `<h2 class="text-red-500">Error: ${error.message}</h2>`;
+            }
+        });
+    </script>
+{% endblock %}

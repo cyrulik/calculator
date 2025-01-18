@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f603fb7ab06a01929fce19c823a7d4da",
+    "content-hash": "e2748f792c9edbab5788b94b8850afe1",
     "packages": [
         {
             "name": "composer/semver",
@@ -86,6 +86,52 @@
                 }
             ],
             "time": "2024-09-19T14:15:21+00:00"
+        },
+        {
+            "name": "cyrulik/simple-calculator",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/cyrulik/simple-calculator.git",
+                "reference": "de28e6c4bd6ca7ce7aee67754bfde1eddd0f52f4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/cyrulik/simple-calculator/zipball/de28e6c4bd6ca7ce7aee67754bfde1eddd0f52f4",
+                "reference": "de28e6c4bd6ca7ce7aee67754bfde1eddd0f52f4",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^8.3"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^3.68",
+                "infection/infection": "^0.29.10",
+                "phpstan/phpstan": "^2.1",
+                "phpunit/phpunit": "^10.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Cyrulik\\SimpleCalculator\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Cyrulik",
+                    "email": "3313071+cyrulik@users.noreply.github.com"
+                }
+            ],
+            "description": "A simple calculator implementation with basic functionality.",
+            "support": {
+                "issues": "https://github.com/cyrulik/simple-calculator/issues",
+                "source": "https://github.com/cyrulik/simple-calculator/tree/1.0.0"
+            },
+            "time": "2025-01-20T10:44:26+00:00"
         },
         {
             "name": "doctrine/cache",
